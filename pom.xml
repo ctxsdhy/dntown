@@ -1,0 +1,204 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	
+	<!-- 项目信息 -->
+	<groupId>org.xs.dntown</groupId>
+	<artifactId>dntown</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	
+	<!-- 项目模块 -->
+	<modules>
+		<module>dntown-wx</module>
+	</modules>
+	
+	<!-- 项目属性 -->
+	<properties>
+		
+		<!-- dntown -->
+		<dntown.version>1.0</dntown.version>
+		
+		<!-- dntown-wx -->
+		<dntown-wx.version>1.0</dntown-wx.version>
+		
+		<!-- dntown-wx-core -->
+		<dntown-wx-core.version>1.0</dntown-wx-core.version>
+		
+		<!-- dntown-wx-game24 -->
+		<dntown-wx-game24.version>1.0</dntown-wx-game24.version>
+		
+		<!-- main version setting -->
+		<spring.version>3.2.9.RELEASE</spring.version>
+		<hibernate.version>4.2.21.Final</hibernate.version>
+		
+		<!-- tools version setting -->
+		<slf4j.version>1.7.21</slf4j.version>
+		<logback.version>1.1.7</logback.version>
+		<commons-lang3.version>3.3.2</commons-lang3.version>
+		<commons-io.version>2.4</commons-io.version>
+		<commons-codec.version>1.9</commons-codec.version>
+		<guava.version>14.0.1</guava.version>
+		<fastjson.version>1.2.8</fastjson.version>
+		
+		<!-- jdbc driver setting -->
+		<mysql.driver.version>5.1.38</mysql.driver.version>
+		
+		<!-- environment setting -->
+		<jdk.version>1.7</jdk.version>
+		
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
+	<!-- 依赖项定义 -->
+ 	<dependencies>
+ 	
+ 		<!-- spring begin -->
+ 		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-core</artifactId>
+		    <version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+ 		<!-- spring end -->
+ 		
+ 		<!-- hibernate begin -->
+ 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+ 		<!-- hibernate end -->
+ 		
+ 		<!-- jdbc driver begin-->
+ 		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.driver.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+ 		<!-- jdbc driver end-->
+ 		
+ 		<!-- logging begin -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency> 
+		    <groupId>ch.qos.logback</groupId> 
+		    <artifactId>logback-core</artifactId> 
+		    <version>${logback.version}</version> 
+		</dependency> 
+		<dependency> 
+		    <groupId>ch.qos.logback</groupId> 
+		    <artifactId>logback-classic</artifactId> 
+		    <version>${logback.version}</version> 
+		</dependency>
+		<!-- logging end -->
+		
+		<!-- general utils begin -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${commons-codec.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+		<!-- general utils end -->
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+ 	</dependencies>
+ 	
+ 	<profiles>   
+     	<profile>
+        	<id>jdk-${jdk.version}</id>     
+            <activation>     
+                <activeByDefault>true</activeByDefault>     
+                <jdk>${jdk.version}</jdk>     
+            </activation>     
+            <properties>     
+                <maven.compiler.source>${jdk.version}</maven.compiler.source>     
+                <maven.compiler.target>${jdk.version}</maven.compiler.target>     
+                <maven.compiler.compilerVersion>${jdk.version}</maven.compiler.compilerVersion>     
+            </properties>     
+	    </profile>    
+	 </profiles>
+</project>

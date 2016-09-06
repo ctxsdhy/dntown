@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- 自定义属性名称 -->
+	<property name="App_Name" value="game24" />	
+	
+	<!-- 输出到滚动文件（时间策略） -->
+	<appender name="game24-log-rollingfiletime" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 活动日志名称 -->
+		<file>/log/${App_Name}/testRollingFileTime.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- 滚动日志名称 -->
+            <!-- 按最小的单位来，如果设置了mm，就是每分钟归档一次 -->
+			<fileNamePattern>/log/${App_Name}/testRollingFileTime-%d{yyyy-MM-dd}-%i.log.zip</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- 如果时间还没到，活动日志超过2KB，就归档一次，用%i区分 -->
+				<maxFileSize>2KB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<!-- 归档文件最长保留时间，没有时间单位，如果是每分钟归档一次，就是30分钟清除一次 -->
+            <!-- <maxHistory>30</maxHistory> -->
+		</rollingPolicy>
+		<encoder>
+			<!-- 格式化日志输出格式 -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 自定义打印级别和范围 -->
+    <!-- additivity是否输出到父输出源 -->
+    <!-- level包括TRACE、DEBUG、INFO、WARN、ERROR -->
+	<logger name="org.xs.dntown.wx" level="INFO" additivity="false">
+		<appender-ref ref="game24-log-rollingfiletime" />
+	</logger>
+	
+	<!-- 默认的打印级别 -->
+	<root level="DEBUG">
+		<!-- <appender-ref ref="techblog-log" /> -->
+	</root>
+</configuration>
