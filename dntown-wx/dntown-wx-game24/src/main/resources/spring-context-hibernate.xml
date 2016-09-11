@@ -72,8 +72,7 @@
     <!-- 定义切面 -->
     <aop:config expose-proxy="true">
     	<!-- 只对业务逻辑层实施事务 -->
-        <aop:pointcut id="txPointcut" expression="execution(* org.xs.dntown.wx.game24.modules.dao.*.*(..))
-        	or execution(* org.xs.dntown.wx.modules.dao.*.*(..))" />
+        <aop:pointcut id="txPointcut" expression="execution(* org.xs.dntown.wx.common.persistence.QueryDao.*(..))" />
         <!-- Advisor定义，切入点和通知分别为txPointcut、txAdvice -->
         <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
     </aop:config>

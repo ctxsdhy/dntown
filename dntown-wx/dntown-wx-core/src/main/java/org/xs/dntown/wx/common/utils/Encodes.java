@@ -1,4 +1,4 @@
-package org.xs.dntown.wx.core.common.utils;
+package org.xs.dntown.wx.common.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

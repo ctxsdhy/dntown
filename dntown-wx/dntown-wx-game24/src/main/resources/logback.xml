@@ -3,6 +3,14 @@
 	<!-- 自定义属性名称 -->
 	<property name="App_Name" value="game24" />	
 	
+	<!-- 输出到控制台 -->
+	<appender name="game24-log-console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<!-- 格式化日志输出格式 -->
+			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
+		</encoder>
+	</appender>
+	
 	<!-- 输出到滚动文件（时间策略） -->
 	<appender name="game24-log-rollingfiletime" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<!-- 活动日志名称 -->
@@ -28,11 +36,17 @@
     <!-- additivity是否输出到父输出源 -->
     <!-- level包括TRACE、DEBUG、INFO、WARN、ERROR -->
 	<logger name="org.xs.dntown.wx" level="INFO" additivity="false">
+		<appender-ref ref="game24-log-console" />
+		<appender-ref ref="game24-log-rollingfiletime" />
+	</logger>
+	
+	<logger name="org.xs.dntown.wx" level="DEBUG" additivity="false">
+		<appender-ref ref="game24-log-console" />
 		<appender-ref ref="game24-log-rollingfiletime" />
 	</logger>
 	
 	<!-- 默认的打印级别 -->
-	<root level="DEBUG">
-		<!-- <appender-ref ref="techblog-log" /> -->
+	<root level="ERROR">
+		
 	</root>
 </configuration>

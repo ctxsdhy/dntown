@@ -5,7 +5,7 @@
  * 
  * $Id: PropertiesLoader.java 1690 2012-02-22 13:42:00Z calvinxiu $
  */
-package org.xs.dntown.wx.core.common.utils;
+package org.xs.dntown.wx.common.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

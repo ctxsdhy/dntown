@@ -3,13 +3,13 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  */
-package org.xs.dntown.wx.core.common.config;
+package org.xs.dntown.wx.common.config;
 
 import java.util.Map;
 
 import com.google.common.collect.Maps;
 
-import org.xs.dntown.wx.core.common.utils.PropertiesLoader;
+import org.xs.dntown.wx.common.utils.PropertiesLoader;
 
 /**
  * 全局配置类

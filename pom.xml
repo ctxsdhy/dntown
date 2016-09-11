@@ -40,6 +40,7 @@
 		<commons-codec.version>1.9</commons-codec.version>
 		<guava.version>14.0.1</guava.version>
 		<fastjson.version>1.2.8</fastjson.version>
+		<xstream.version>1.4.9</xstream.version>
 		
 		<!-- jdbc driver setting -->
 		<mysql.driver.version>5.1.38</mysql.driver.version>
@@ -176,6 +177,11 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>${fastjson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>${xstream.version}</version>
 		</dependency>
 		<!-- general utils end -->
 		
