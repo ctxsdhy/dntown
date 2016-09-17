@@ -229,7 +229,7 @@ public class CoreController extends BaseController {
 		
 		//计算
 		String answer = msgReq.getContent();
-		answer = answer.replace("（", "(").replace("）", ")").replace("÷", "/").replace("／", "/").replace("×", "*").replace("－", "-").replace("—", "-");
+		answer = answer.replace("（", "(").replace("）", ")").replace("÷", "/").replace("／", "/").replace("×", "*").replace("－", "-").replace("—", "-").replace(" ", "");
 		//计算表达式结果
 		ScriptEngineManager manager = new ScriptEngineManager();
         ScriptEngine se = manager.getEngineByName("js");
