@@ -323,8 +323,8 @@ public class CoreController extends BaseController {
 				questionInfo.setHitRate(Float.valueOf(numberFormat.format((float) questionInfo.getRightTimes() / (float) questionInfo.getTimes() * 100)));
         	}
         	
-        	gUserInfo.setModuleStep(StepEnum.answer.getValue());
-			gUserInfo.setStepTime(new Date());
+        	//gUserInfo.setModuleStep(StepEnum.answer.getValue());
+			//gUserInfo.setStepTime(new Date());
         	
 			result = "错误";
         }
