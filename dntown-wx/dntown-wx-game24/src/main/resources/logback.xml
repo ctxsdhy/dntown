@@ -46,7 +46,7 @@
 	</logger>
 	
 	<!-- 默认的打印级别 -->
-	<root level="ERROR">
+	<root level="DEBUG">
 		
 	</root>
 </configuration>

@@ -1,7 +1,7 @@
 package org.xs.dntown.wx.core.modules.web;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +20,6 @@ import org.xs.dntown.wx.core.modules.entity.UserInfo;
 import org.xs.dntown.wx.core.modules.entity.enums.CoreStepEnum;
 import org.xs.dntown.wx.core.modules.entity.enums.ModuleEnum;
 import org.xs.dntown.wx.core.modules.entity.req.BaseMsgReq;
-import org.xs.dntown.wx.core.modules.entity.req.TextMsgReq;
 import org.xs.dntown.wx.core.modules.entity.req.VerifyAccessReq;
 import org.xs.dntown.wx.core.modules.service.LogService;
 import org.xs.dntown.wx.core.modules.service.UserService;
@@ -42,6 +41,9 @@ public class CoreController extends BaseController {
 	 */
 	@RequestMapping(method = {RequestMethod.POST }, produces = "application/xml;charset=UTF-8")
 	public String getMsg(HttpServletRequest request) {
+		String openId = "";
+		String userName = "";
+		String content = "";
 		try {
 			
 			//从流中获取xml数据转入map
@@ -57,6 +59,8 @@ public class CoreController extends BaseController {
 			msgReq.setContent(reqMap.get("Content"));
 			msgReq.setEvent(reqMap.get("Event"));
 			request.setAttribute("msgReq", msgReq);
+			openId = msgReq.getFromUserName();
+			content = msgReq.getContent();
 			
 			//消息处理/跳转
 			if(!StringUtils.isEmpty(msgReq.getMsgType())) {
@@ -72,6 +76,7 @@ public class CoreController extends BaseController {
 					}
 					if(msgReq.getEvent().toUpperCase().equals("UNSUBSCRIBE")) {
 						log.info("删除此用户");
+						logService.addInfoLog(openId, userName, content, "删除用户", ModuleEnum.normal.getValue(), CoreStepEnum.normal.getValue());
 						//删除此用户
 						userService.deleteByOpenId(msgReq.getFromUserName());
 						return "";
@@ -88,6 +93,7 @@ public class CoreController extends BaseController {
 				//获得用户信息
 				UserInfo userInfo = userService.getByOpenId(msgReq.getFromUserName());
 				request.setAttribute("userInfo", userInfo);
+				userName = userInfo.getUserName();
 				log.info("获得用户信息");
 				
 				//取名
@@ -99,6 +105,14 @@ public class CoreController extends BaseController {
 					userInfo.setUserName(reqMap.get("Content"));
 				}
 				
+				//刷新模块（1小时）
+				/*long timeDiff = new Date().getTime() - userInfo.getModuleTime().getTime();
+				long hoursDiff = timeDiff / (1000 * 60 * 60);
+				if(hoursDiff >= 1) {
+					userService.setModule(msgReq.getFromUserName(), ModuleEnum.normal.getValue());
+					userInfo.setModule(ModuleEnum.normal.getValue());
+				}*/
+				
 				log.info("开始转入模块");
 				//设置转入模块
 				//core
@@ -107,7 +121,7 @@ public class CoreController extends BaseController {
 					userInfo.setModule(ModuleEnum.normal.getValue());
 				}
 				//game24
-				else if(reqMap.get("Content").equals("24") && !userInfo.getModule().equals(ModuleEnum.game24.getValue())) {
+				else if(reqMap.get("Content").equals("24点") && !userInfo.getModule().equals(ModuleEnum.game24.getValue())) {
 					userService.setModule(msgReq.getFromUserName(), ModuleEnum.game24.getValue());
 					userInfo.setModule(ModuleEnum.game24.getValue());
 				}
@@ -130,15 +144,21 @@ public class CoreController extends BaseController {
 				}
 				//跳转到成语接龙
 				else if(userInfo.getModule().equals(ModuleEnum.idiom.getValue())) {
+					//TODO
+					userService.setModule(msgReq.getFromUserName(), ModuleEnum.normal.getValue());
+					userInfo.setModule(ModuleEnum.normal.getValue());
+					
 					log.info("转入成语接龙");
 					return "forward:/idiom";
 				}
 			}
 		} catch (Exception e) {
 			log.debug("执行失败");
+			logService.addErrorLog(openId, userName, content, "", ModuleEnum.normal.getValue(), CoreStepEnum.normal.getValue(), e);
 			e.printStackTrace();
 		}
 		
+		logService.addInfoLog(openId, userName, content, "返回空", ModuleEnum.normal.getValue(), CoreStepEnum.normal.getValue());
 		return "forward:/empty";
 	}
 	
@@ -197,7 +217,7 @@ public class CoreController extends BaseController {
 			
 			if(!StringUtils.isEmpty(msgReq.getContent())) {
 				log.info("收到消息：" + msgReq.getContent());
-				result = MessageUtil.msgReqToXml(msgReq, "并没有...");
+				result = MessageUtil.msgReqToXml(msgReq, "开发中..");
 			}
 		} catch (Exception e) {
 			log.debug("执行失败");

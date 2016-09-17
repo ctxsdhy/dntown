@@ -67,7 +67,7 @@ public class UserService extends BaseService<UserInfo> {
 	 * @param coreStep
 	 */
 	public void setModule(String openId, String module) {
-		String hql = "update UserInfo set module=?, module_time=? where openId=?";
+		String hql = "update UserInfo set module=?, moduleTime=? where openId=?";
 		queryDao.update(hql, new Object[]{module, new Date(), openId});
 	}
 	

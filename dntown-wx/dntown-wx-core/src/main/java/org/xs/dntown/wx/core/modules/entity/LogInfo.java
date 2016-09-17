@@ -26,6 +26,11 @@ public class LogInfo extends IdEntity {
 	private String openId;
 	
 	/**
+	 * 用户名称
+	 */
+	private String userName;
+	
+	/**
 	 * 创建时间
 	 */
 	@Column(updatable=false)
@@ -35,6 +40,11 @@ public class LogInfo extends IdEntity {
 	 * 内容
 	 */
 	private String content;
+	
+	/**
+	 * 回复
+	 */
+	private String reply;
 	
 	/**
 	 * 模块
@@ -140,5 +150,37 @@ public class LogInfo extends IdEntity {
 	 */
 	public void setStep(String step) {
 		this.step = step;
+	}
+
+	/**  
+	 * 获取userName  
+	 * @return userName userName  
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+	/**  
+	 * 设置userName  
+	 * @param userName userName  
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	/**  
+	 * 获取reply  
+	 * @return reply reply  
+	 */
+	public String getReply() {
+		return reply;
+	}
+
+	/**  
+	 * 设置reply  
+	 * @param reply reply  
+	 */
+	public void setReply(String reply) {
+		this.reply = reply;
 	}
 }

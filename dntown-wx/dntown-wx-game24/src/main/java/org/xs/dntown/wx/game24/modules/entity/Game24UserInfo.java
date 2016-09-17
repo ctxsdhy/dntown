@@ -2,7 +2,6 @@ package org.xs.dntown.wx.game24.modules.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -59,6 +58,11 @@ public class Game24UserInfo extends IdEntity {
 	 * 题目Id
 	 */
 	private String questionId;
+	
+	/**
+	 * 是否已答题
+	 */
+	private boolean isAnswered;
 	
 	/**  
 	 * 获取hitRate  
@@ -210,5 +214,21 @@ public class Game24UserInfo extends IdEntity {
 	 */
 	public void setQuestionId(String questionId) {
 		this.questionId = questionId;
+	}
+
+	/**  
+	 * 获取isAnswered  
+	 * @return isAnswered isAnswered  
+	 */
+	public boolean getIsAnswered() {
+		return isAnswered;
+	}
+
+	/**  
+	 * 设置isAnswered  
+	 * @param isAnswered isAnswered  
+	 */
+	public void setIsAnswered(boolean isAnswered) {
+		this.isAnswered = isAnswered;
 	}
 }

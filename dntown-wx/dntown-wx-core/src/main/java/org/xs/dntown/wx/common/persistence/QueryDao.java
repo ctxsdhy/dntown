@@ -301,7 +301,7 @@ public class QueryDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	public List<T> find(Page<T> page, Order order){
-		return find(page, null, order);
+		return find(page, null, order, null);
 	}
 	
 	/**
@@ -309,7 +309,23 @@ public class QueryDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	public List<T> find(List<Criterion> criterionList, Order order){
-		return find(null, criterionList, order);
+		return find(null, criterionList, order, null);
+	}
+	
+	/**
+	 * QL 查询所有
+	 * @return
+	 */
+	public List<T> findTop(Integer top, Order order) {
+		return find(null, null, order, top);
+	}
+	
+	/**
+	 * QL 查询所有
+	 * @return
+	 */
+	public List<T> findTop(List<Criterion> criterionList, Integer top, Order order) {
+		return find(null, criterionList, order, top);
 	}
 	
 	/**
@@ -317,7 +333,7 @@ public class QueryDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<T> find(Page<T> page, List<Criterion> criterionList, Order order){
+	public List<T> find(Page<T> page, List<Criterion> criterionList, Order order, Integer top){
 		
 		Criteria criteria = getSession().createCriteria(entityClass);
 		
@@ -337,6 +353,11 @@ public class QueryDao<T> extends BaseDao<T> {
 			
 			criteria.setFirstResult((page.getPageNo() - 1) * page.getPageSize());
 			criteria.setMaxResults(page.getPageSize());
+		}
+		
+		if(top != null) {
+			criteria.setFirstResult(0);
+			criteria.setMaxResults(top);
 		}
 		
 		if(order != null) {
@@ -385,7 +406,7 @@ public class QueryDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	public List<T> findAll(){
-		return find((Page<T>)null, (List<Criterion>)null, (Order)null);
+		return find((Page<T>)null, (List<Criterion>)null, (Order)null, (Integer)null);
 	}
 	
 	/**
@@ -394,7 +415,7 @@ public class QueryDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	public List<T> findAll(Order order){
-		return find((Page<T>)null, (List<Criterion>)null, order);
+		return find((Page<T>)null, (List<Criterion>)null, order, (Integer)null);
 	}
 	
 	// -------------- Query Tools --------------
