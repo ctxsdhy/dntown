@@ -172,6 +172,7 @@ public class CoreController extends BaseController {
 			if(!StringUtils.isEmpty(req.getEchostr())) {
 				String token = Global.getConfig("wx.token");
 				String[] ArrTmp = {token, req.getTimestamp(), req.getNonce()};
+				//进行字典序排序
 				Arrays.sort(ArrTmp);
 				StringBuffer sb = new StringBuffer();
 				for (int i = 0; i < ArrTmp.length; i++) {
