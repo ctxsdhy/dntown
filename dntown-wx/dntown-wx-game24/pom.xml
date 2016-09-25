@@ -10,7 +10,6 @@
 	</parent>
 	
 	<artifactId>dntown-wx-game24</artifactId>
-	<packaging>war</packaging>
 	
 	<!-- 依赖项定义 -->
 	<dependencies>

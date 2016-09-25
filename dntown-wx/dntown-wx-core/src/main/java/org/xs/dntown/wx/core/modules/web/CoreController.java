@@ -144,12 +144,8 @@ public class CoreController extends BaseController {
 				}
 				//跳转到成语接龙
 				else if(userInfo.getModule().equals(ModuleEnum.idiom.getValue())) {
-					//TODO
-					userService.setModule(msgReq.getFromUserName(), ModuleEnum.normal.getValue());
-					userInfo.setModule(ModuleEnum.normal.getValue());
-					
 					log.info("转入成语接龙");
-					return "forward:/idiom";
+					return "forward:/idiom/msg";
 				}
 			}
 		} catch (Exception e) {
@@ -202,30 +198,5 @@ public class CoreController extends BaseController {
 	public String empty() throws Exception {
 		log.debug("返回空");
 		return "";
-	}
-	
-	/**
-	 * 文本消息
-	 */
-	@ResponseBody
-	@RequestMapping(value = "/idiom", produces = { "text/plain;charset=utf-8" })
-	public String textMsg(HttpServletRequest request) throws Exception {
-		String result = "";
-		try {
-			
-			//得到接收消息实体
-			BaseMsgReq msgReq = (BaseMsgReq)request.getAttribute("msgReq");
-			
-			if(!StringUtils.isEmpty(msgReq.getContent())) {
-				log.info("收到消息：" + msgReq.getContent());
-				result = MessageUtil.msgReqToXml(msgReq, "开发中..");
-			}
-		} catch (Exception e) {
-			log.debug("执行失败");
-			e.printStackTrace();
-		}
-		
-		//返回消息
-		return result;
 	}
 }

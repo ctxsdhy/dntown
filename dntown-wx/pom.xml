@@ -15,8 +15,13 @@
  	<!-- 项目模块 -->
  	<modules>
 		<module>dntown-wx-core</module>
+		<module>dntown-wx-game242</module>
+		<module>dntown-wx-idiom</module>
+		<module>dntown-wx-front</module>
+		<module>dntown-wx-test</module>
+		<module>idiom</module>
 		<module>dntown-wx-game24</module>
-	</modules>
+ 	</modules>
 	
 	<properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -96,7 +96,7 @@ public class CoreController extends BaseController {
 				gUserInfo.setModuleStep(StepEnum.normal.getValue());
 			}
 			
-			log.info("开始转入步骤");				
+			log.info("开始转入步骤");
 			//出题
 			if(msgReq.getContent().equals("24")) {
 				
@@ -171,7 +171,7 @@ public class CoreController extends BaseController {
 				}
 				
 				if(!flag) {
-					result += "No." + (Integer.parseInt(game24UserService.getRankScope(gUserInfo.getScore())) + 1) + " 『" + userInfo.getUserName() + "』(" + gUserInfo.getScore() + "分)";
+					result += "No." + (Integer.parseInt(game24UserService.getRankScope(gUserInfo.getScore()))) + " 『" + userInfo.getUserName() + "』(" + gUserInfo.getScore() + "分)";
 				} else {
 					result = result.substring(0, result.length() - 1);
 				}
@@ -283,7 +283,7 @@ public class CoreController extends BaseController {
 				score = 1;
 			}
 			
-			result = "答对了！用时" + secondsDiff + "s，积分 +" + score ;
+			result = "答对了！用时" + secondsDiff + "s，积分 +" + score;
 			
 			//更新用户积分、次数、答对次数、命中率
 			gUserInfo.setScore(gUserInfo.getScore() + score);
@@ -326,7 +326,7 @@ public class CoreController extends BaseController {
         	//gUserInfo.setModuleStep(StepEnum.answer.getValue());
 			//gUserInfo.setStepTime(new Date());
         	
-			result = "错误";
+        	result = "错误";
         }
         
         //更新game24用户
