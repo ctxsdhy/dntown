@@ -100,7 +100,7 @@ public class CoreController extends BaseController {
 					//处理答题结果
 					disposeAnswer(iUserInfo, msgReq);
 					
-					result += finishAnswer(iUserInfo, msgReq, false);
+					result += finishAnswer(iUserInfo, msgReq, false) + "\n";
 				}
 				
 				log.info("开始下一题");
@@ -181,7 +181,7 @@ public class CoreController extends BaseController {
 			}
 			
 			//返回接龙公告
-			result += "『成语接龙』\n\n";
+			result += "『成语接龙』\n";
 			result += "【规则】\n";
 			result += "有3种接龙方式：\n";
 			result += "与尾字相同接龙，积分+3\n";
@@ -362,7 +362,7 @@ public class CoreController extends BaseController {
 		int score = 0;
 		
 		int comboTimes = iUserInfo.getComboTimes();
-		if(comboTimes > 0) {
+		if(comboTimes > 1) {
 			int rank = comboTimes / 5 + 1;
 			score += Math.pow(2, rank);
 		}
