@@ -182,8 +182,20 @@ public class CoreController extends BaseController {
 				return result;
 			}
 			
+			//如果是新进来就刷新状态
+			if(msgReq.getContent().equals("24点")) {
+				
+				//完成答题
+				finishAnswer(gUserInfo, msgReq);
+				
+				//设置步骤
+				gUserInfo.setModuleStep(StepEnum.normal.getValue());
+				gUserInfo.setStepTime(new Date());
+				game24UserService.update(gUserInfo);
+			}
+			
 			//如果是答题状态
-			if(gUserInfo.getModuleStep().equals(StepEnum.answer.getValue()) && !msgReq.getContent().equals("24点")) {
+			if(gUserInfo.getModuleStep().equals(StepEnum.answer.getValue())) {
 				
 				//返回处理答题结果
 				result = finishAnswer(gUserInfo, msgReq);

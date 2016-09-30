@@ -169,8 +169,20 @@ public class CoreController extends BaseController {
 				return result;
 			}
 			
+			//如果是新进来就刷新状态
+			if(msgReq.getContent().equals("接龙")) {
+				
+				//完成答题
+				finishAnswer(iUserInfo, msgReq, true);
+				
+				//设置步骤
+				iUserInfo.setModuleStep(StepEnum.normal.getValue());
+				iUserInfo.setStepTime(new Date());
+				idiomUserService.update(iUserInfo);
+			}
+			
 			//如果是答题状态
-			if(iUserInfo.getModuleStep().equals(StepEnum.answer.getValue()) && !msgReq.getContent().equals("开始")) {
+			if(iUserInfo.getModuleStep().equals(StepEnum.answer.getValue())) {
 				
 				//返回处理答题结果
 				result = disposeAnswer(iUserInfo, msgReq);
@@ -190,7 +202,7 @@ public class CoreController extends BaseController {
 			result += "连胜有积分奖励\n";
 			result += "【说明】\n";
 			result += "1、输入“开始”：开始答题\n";
-			result += "2、输入“答案”：查看答案\n";
+			result += "2、输入“答案”：完成答题\n";
 			result += "3、输入“排行”：查看排行\n";
 			result += "4、输入“公告”：返回首页";
 			logService.addInfoLog(openId, userName, content, result, ModuleEnum.idiom.getValue(), StepEnum.normal.getValue());
